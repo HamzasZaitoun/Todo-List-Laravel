@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
@@ -18,6 +19,10 @@ class TaskController extends Controller
     }
     public function store()
     {
-        return request()->all();
+        $validatedData = request()->validate([
+            'description' => 'required|string|max:255',
+        ]);
+        $task=Task::create(['description'=>request('description',)]);
+        return redirect('/') ;
     }
 }
