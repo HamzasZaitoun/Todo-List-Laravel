@@ -10,7 +10,9 @@ class TaskController extends Controller
 {
    public function index()
    {
-    return view('tasks.index');
+    $tasks=Task::orderBy('id','desc')->get();
+    // dd($tasks);
+    return view('tasks.index',['tasks'=>$tasks,]);
 
     }
     public function create()
@@ -25,4 +27,8 @@ class TaskController extends Controller
         $task=Task::create(['description'=>request('description',)]);
         return redirect('/') ;
     }
+    // public function remove()
+    // {
+    //     $task =Task::remove();
+    // }
 }

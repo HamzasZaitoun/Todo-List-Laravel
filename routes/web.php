@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "App\Http\Controllers\TaskController@index"
-);
-Route::get('/tasks', "App\Http\Controllers\TaskController@index"
-);
+Route::get('/', [TaskController::class,"index"]);
 
-Route::get('/tasks/create','App\Http\Controllers\TaskController@create');
+Route::get('/tasks', [TaskController::class,"index"]);
 
-Route::POST('/tasks','App\Http\Controllers\TaskController@store');
+Route::get('/tasks/create',[TaskController::class,"create"]);
+
+Route::POST('/tasks',[TaskController::class,"store"]);
